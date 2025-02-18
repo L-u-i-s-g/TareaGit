@@ -1,0 +1,47 @@
+function jugar() {
+    // Función que inicia un nuevo juego
+    let jugarDeNuevo = true;
+
+    while (jugarDeNuevo) {
+        // La computadora genera un número aleatorio entre 1 y 9
+        const numeroComputadora = Math.floor(Math.random() * 9) + 1;
+
+        // Se solicita al usuario que ingrese un número en el rango de 3 a 6
+        let numeroUsuario;
+        do {
+            numeroUsuario = parseInt(prompt("Ingrese un número entre 3 y 6:"));
+        } while (numeroUsuario < 3 || numeroUsuario > 6);
+
+        // Se le pide al usuario que adivine si su número es mayor, menor o igual al número de la computadora
+        let adivinanza = prompt("¿Su número es mayor, menor o igual al número generado por la computadora? (mayor/menor/igual):").toLowerCase();
+
+        // Validamos que la adivinanza sea una de las opciones correctas
+        while (adivinanza !== "mayor" && adivinanza !== "menor" && adivinanza !== "igual") {
+            adivinanza = prompt("Por favor ingrese una opción válida: mayor, menor o igual.");
+        }
+
+        // Comprobamos si la adivinanza es correcta
+        let mensajeResultado;
+        if (adivinanza === "mayor" && numeroUsuario > numeroComputadora) {
+            mensajeResultado = `La computadora eligió ${numeroComputadora}, usted eligió ${numeroUsuario}. Su elección es mayor ¡Ha adivinado!`;
+        } else if (adivinanza === "menor" && numeroUsuario < numeroComputadora) {
+            mensajeResultado = `La computadora eligió ${numeroComputadora}, usted eligió ${numeroUsuario}. Su elección es menor ¡Ha adivinado!`;
+        } else if (adivinanza === "igual" && numeroUsuario === numeroComputadora) {
+            mensajeResultado = `La computadora eligió ${numeroComputadora}, usted eligió ${numeroUsuario}. Su elección es igual ¡Ha adivinado!`;
+        } else {
+            mensajeResultado = `La computadora eligió ${numeroComputadora}, usted eligió ${numeroUsuario}. Su elección es incorrecta.`;
+        }
+
+        // Mostrar el mensaje final
+        alert(mensajeResultado);
+
+        // Preguntar al usuario si desea jugar otra vez
+        jugarDeNuevo = prompt("¿Quieres jugar otra vez? (SI/NO):").toLowerCase() === "si";
+    }
+
+    // Mostrar mensaje de despedida
+    alert("Gracias por jugar. Te saluda José Gracia carnet_25000613 ¡Hasta la próxima!");
+}
+
+// Iniciar el juego
+jugar();
